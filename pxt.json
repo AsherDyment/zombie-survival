@@ -12,7 +12,9 @@
         "README.md",
         "tilemap.g.jres",
         "tilemap.g.ts",
-        "pxToTiles.ts"
+        "pxToTiles.ts",
+        "images.g.jres",
+        "images.g.ts"
     ],
     "testFiles": [
         "test.ts"

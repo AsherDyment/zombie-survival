@@ -1,4 +1,35 @@
-let zombieImgs = [
+function zombieincoming () {
+    zombie = sprites.create(zombieImgs[randint(0, 9)], 0)
+    zombie.follow(oldLady, 40)
+    tiles.placeOnRandomTile(zombie, sprites.castle.tilePath5)
+}
+
+function nextWave(){
+    info.startCountdown(10)
+    if(wave == 1){
+        for (let i = 0; i < 5; i++){
+            zombieincoming()  
+      }
+    }
+    else if(wave == 2){
+        for (let i = 0; i < 3; i++){
+            zombieincoming()
+        }
+    }
+     else if(wave == 3){
+        for (let i = 0; i < 2; i++){
+            zombieincoming()
+    }   }
+}
+
+info.onCountdownEnd(function() {
+    wave++
+    nextWave()
+})
+let wave = 1
+let zombie: Sprite = null
+let zombieImgs: Image[] = []
+zombieImgs = [
 img`
     ...cccccccccccccc...
     ..c67777777777777c..
@@ -302,6 +333,6 @@ img`
     .....ccc.....e......
     `
 ]
-
 scene.setBackgroundColor(7)
 tiles.setTilemap(tilemap`level_1`)
+nextWave()
