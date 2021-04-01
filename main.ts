@@ -1,34 +1,43 @@
-function zombieincoming () {
-    zombie = sprites.create(zombieImgs[randint(0, 9)], 0)
-    zombie.follow(oldLady, 40)
-    tiles.placeOnRandomTile(zombie, sprites.castle.tilePath5)
-}
-
-function nextWave(){
-    info.startCountdown(10)
-    if(wave == 1){
-        for (let i = 0; i < 5; i++){
-            zombieincoming()  
-      }
+info.onCountdownEnd(function () {
+    wave += 1
+    if (wave == 4) {
+        game.splash("The army came!", "You are saved.")
+        game.over(true)
+        game.splash("Wave " + wave + " is coming! ")
     }
-    else if(wave == 2){
-        for (let i = 0; i < 3; i++){
+    nextWave()
+})
+function nextWave () {
+    info.startCountdown(10)
+    if (wave == 1) {
+        for (let index = 0; index < 5; index++) {
+            zombieincoming()
+        }
+    } else if (wave == 2) {
+        for (let index = 0; index < 3; index++) {
+            zombieincoming()
+        }
+    } else if (wave == 3) {
+        for (let index = 0; index < 2; index++) {
             zombieincoming()
         }
     }
-     else if(wave == 3){
-        for (let i = 0; i < 2; i++){
-            zombieincoming()
-    }   }
 }
-
-info.onCountdownEnd(function() {
-    wave++
-    nextWave()
+sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSprite) {
+    game.splash("\"they have eaten your brains.\"")
+    game.over(false)
 })
-let wave = 1
+function zombieincoming () {
+    zombie = sprites.create(zombieImgs[randint(0, 9)], SpriteKind.Enemy)
+    zombie.follow(oldLady, 40)
+    tiles.placeOnRandomTile(zombie, sprites.castle.tilePath5)
+}
+let RandomZombie: Sprite = null
+let Zombies: Sprite[] = []
 let zombie: Sprite = null
 let zombieImgs: Image[] = []
+let wave = 0
+wave = 1
 zombieImgs = [
 img`
     ...cccccccccccccc...
@@ -333,6 +342,21 @@ img`
     .....ccc.....e......
     `
 ]
+let hi = [
+"grrr",
+"Brains",
+"arrggg",
+"so hungry",
+"give brain",
+"hand it over",
+"bra give it",
+"rumble"
+]
 scene.setBackgroundColor(7)
 tiles.setTilemap(tilemap`level_1`)
 nextWave()
+game.onUpdateInterval(500, function () {
+    Zombies = sprites.allOfKind(SpriteKind.Enemy)
+    RandomZombie = Zombies._pickRandom()
+    RandomZombie.say(hi._pickRandom())
+})

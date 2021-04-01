@@ -39,36 +39,22 @@ controller.right.onEvent(ControllerButtonEvent.Pressed, function() {
 })
 
 let oldLadyImg = img`
-    .....cccccccccccccccc..
-    ...cc11111111c1111111c.
-    ...cc1111111111111111c.
-    ..c111111111111111111c.
-    .cc1111111111d1111111c.
-    c1111111ddddddddddd11c.
-    c111111ddddddddddddde..
-    c111111ddddfddddddfde..
-    c111111ddddfddddddfde..
-    c11111ddddddffddffdde..
-    c11111ddddddffddffdde..
-    ccc1111ddddddddbdddde..
-    ..c1111ddddddddddddde..
-    ..c1111ddddddddddddde..
-    ...cc1dddddddd2ddddde..
-    .....bddddddddddddde...
-    ...2244444444ddd4442...
-    ..22244ee44444444444ee.
-    ..2224bbdee444244444bde
-    ..2224bbdee444444444bde
-    ..2224bbdee444444444bde
-    ..22244ee44444244444ee.
-    ..2224444444444444442..
-    ..2224444444444444442..
-    ..4444444444444444444..
-    ..4444444444444444444..
-    ...444bbb44444bbbb44...
-    .....ebbdee..ebbdde....
-    .....222b22..222bb2....
-    .....2.2222..2.2222....
+    . . . . . . f f f f f f . . . .
+    . . . . f f e e e e f 2 f . . .
+    . . . f f e e e e f 2 2 2 f . .
+    . . . f e e e f f e e e e f . .
+    . . . f f f f e e 2 2 2 2 e f .
+    . . . f e 2 2 2 f f f f e 2 f .
+    . . f f f f f f f e e e f f f .
+    . . f f e 4 4 e b f 4 4 e e f .
+    . . f e e 4 d 4 1 f d d e f . .
+    . . . f e e e 4 d d d d f . . .
+    . . . . f f e e 4 4 4 e f . . .
+    . . . . . 4 d d e 2 2 2 f . . .
+    . . . . . e d d e 2 2 2 f . . .
+    . . . . . f e e f 4 5 5 f . . .
+    . . . . . . f f f f f f . . . .
+    . . . . . . . f f f . . . . . .
 `
 let oldLadyImgClone = oldLadyImg.clone()
 oldLadyImgClone.flipX()
