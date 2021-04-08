@@ -10,7 +10,7 @@ info.onCountdownEnd(function () {
 function nextWave () {
     info.startCountdown(10)
     if (wave == 1) {
-        for (let index = 0; index < 5; index++) {
+        for (let index = 0; index < 5 ; index++) {
             zombieincoming()
         }
     } else if (wave == 2) {
@@ -28,10 +28,35 @@ sprites.onOverlap(SpriteKind.Enemy, SpriteKind.Player, function (sprite, otherSp
     game.over(false)
 })
 function zombieincoming () {
-    zombie = sprites.create(zombieImgs[randint(0, 9)], SpriteKind.Enemy)
+    let zombieNumber = randint(0, zombieImgs.length - 1)
+    zombie = sprites.create(zombieImgs[zombieNumber], SpriteKind.Enemy)
     zombie.follow(oldLady, 40)
     tiles.placeOnRandomTile(zombie, sprites.castle.tilePath5)
+
+    let leftImg = zombieImgs[zombieNumber].clone()
+    leftImg.flipX()
+
+    sprites.setDataImage(zombie, "right", zombieImgs[zombieNumber])
+    sprites.setDataImage(zombie, "left", leftImg)
 }
+
+game.onUpdateInterval(100, function() {
+    
+    let zombies = sprites.allOfKind(SpriteKind.Enemy) 
+
+    for (let zombie of zombies){
+        if (zombie.vx > 0){
+            let rightImg = sprites.readDataImage(zombie, "right")
+             zombie.setImage(rightImg)
+        }
+
+
+    else{
+  let leftImg = sprites.readDataImage(zombie, "left")
+  zombie.setImage(leftImg)
+    }
+    }
+})
 let RandomZombie: Sprite = null
 let Zombies: Sprite[] = []
 let zombie: Sprite = null
@@ -67,7 +92,7 @@ img`
     ....ceeec...cce.....
     ....ceeec....c......
     .....ccc.....e......
-    `,
+`,
 img`
     .....44444444444...
     ..444444444444444..
